@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Engr. Irtiza Mazhar - Full Stack Developer Portfolio</title>
+
+  <!-- TailwindCSS & Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    :root{
+      --brand-1:#6366f1; /* indigo-500 */
+      --brand-2:#8b5cf6; /* violet-500 */
+      --brand-3:#10b981; /* emerald-500 */
+      --ink:#0f172a;     /* slate-900 */
+      --muted:#64748b;   /* slate-500 */
+    }
+    
+    /* Global polish */
+    body { color: var(--ink); }
+    .gradient-bg{ background: linear-gradient(135deg, var(--brand-1) 0%, var(--brand-2) 100%); }
+    .soft-card{ background: linear-gradient(145deg,#ffffff 0%,#f8fafc 100%); border:1px solid #e2e8f0; }
+    .glass-card{
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: saturate(140%) blur(6px);
+      border: 1px solid rgba(226,232,240,0.75);
+    }
+    .card-hover{ transition: transform .3s ease, box-shadow .3s ease; }
+    .card-hover:hover{
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 25px 40px -15px rgba(2,6,23,.25);
+    }
+    
+    /* New card design */
+    .project-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(226,232,240,0.8);
+    }
+    
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px -10px rgba(99,102,241,0.15);
+    }
+    
+    .project-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .project-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+    
+    .project-title {
+      color: white;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    
+    .project-content {
+      padding: 24px;
+    }
+    
+    .project-description {
+      color: var(--muted);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    
+    .tech-badge{
+      background: linear-gradient(135deg, var(--brand-1) 0%, var(--brand-2) 100%);
+      color:#fff; 
+      font-weight:600;
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+    
+    .section-title{ 
+      position:relative; 
+      display:inline-block; 
+      padding-bottom:10px; 
+    }
+    
+    .section-title::after{
+      content:'';
+      position:absolute; 
+      left:50%; 
+      bottom:0; 
+      transform:translateX(-50%);
+      width:88px; 
+      height:3px; 
+      border-radius:2px;
+      background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+    }
+    
+    .skill-track{ 
+      height:8px; 
+      background:#e5e7eb; 
+      border-radius:999px; 
+      overflow:hidden; 
+    }
+    
+    .skill-bar{ 
+      height:8px; 
+      background:var(--brand-1); 
+      border-radius:999px; 
+      width:0; 
+      transition: width .9s cubic-bezier(.22,.61,.36,1); 
+    }
+    
+    nav a{ font-weight:500; }
+    nav a:hover{ color: var(--brand-1); }
+    
+    /* Timeline vertical line for Experience */
+    .timeline-line{ 
+      position:absolute; 
+      left:1.25rem; 
+      top:0; 
+      bottom:0; 
+      width:2px; 
+      background:#c7d2fe; 
+    }
+    
+    @media (min-width:768px){ 
+      .timeline-line{ 
+        left:50%; 
+        transform:translateX(-1px); 
+      } 
+    }
+    
+    /* New button styles */
+    .btn-primary {
+      background: linear-gradient(135deg, var(--brand-1) 0%, var(--brand-2) 100%);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px -5px rgba(99,102,241,0.4);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .btn-secondary:hover {
+      background: white;
+      color: var(--brand-1);
+    }
+    
+    /* Stats cards */
+    .stat-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 5px 15px -5px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    /* Hero section improvements */
+    .hero-content {
+      position: relative;
+      z-index: 10;
+    }
+    
+    .hero-bg-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+    
+    /* QR Code styling */
+    .qr-code {
+      width: 120px;
+      height: 120px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 8px;
+      background: white;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full bg-white/95 backdrop-filter backdrop-blur-sm border-b border-gray-100 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="#home" class="flex items-center space-x-2">
+          <span class="text-2xl font-extrabold tracking-tight">Irtiza Mazhar</span>
+        </a>
+
+        <!-- Desktop menu -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#home" class="text-gray-700 hover:text-indigo-600 transition">Home</a>
+          <a href="#about" class="text-gray-700 hover:text-indigo-600 transition">About</a>
+          <a href="#skills" class="text-gray-700 hover:text-indigo-600 transition">Skills</a>
+          <a href="#experience" class="text-gray-700 hover:text-indigo-600 transition">Experience</a>
+          <a href="#projects" class="text-gray-700 hover:text-indigo-600 transition">Projects</a>
+          <a href="#contact" class="text-gray-700 hover:text-indigo-600 transition">Contact</a>
+        </div>
+
+        <!-- Mobile toggle -->
+        <button class="md:hidden p-2 rounded-lg border border-gray-200 hover:border-indigo-300 mobile-menu-btn" aria-label="Open Menu">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="md:hidden mobile-menu hidden border-t border-gray-100">
+      <div class="px-4 py-3 space-y-2 bg-white">
+        <a href="#home" class="block py-2 text-gray-700 hover:text-indigo-600">Home</a>
+        <a href="#about" class="block py-2 text-gray-700 hover:text-indigo-600">About</a>
+        <a href="#skills" class="block py-2 text-gray-700 hover:text-indigo-600">Skills</a>
+        <a href="#experience" class="block py-2 text-gray-700 hover:text-indigo-600">Experience</a>
+        <a href="#projects" class="block py-2 text-gray-700 hover:text-indigo-600">Projects</a>
+        <a href="#contact" class="block py-2 text-gray-700 hover:text-indigo-600">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="home" class="gradient-bg min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
+    <div class="hero-bg-pattern"></div>
+    <div class="max-w-7xl mx-auto px-6 py-16 text-center hero-content">
+      <div class="mb-8">
+        <img
+          src="https://cdn1.genspark.ai/user-upload-image/crawler_linkedin_profile_thumbnails/6e5ca79b-6ce4-35bf-b0ec-8f407dbf1a41"
+          alt="Irtiza Mazhar"
+          class="w-32 h-32 md:w-36 md:h-36 rounded-full mx-auto border-4 border-white shadow-2xl object-cover"
+        />
+      </div>
+      <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight">
+        Engr. <span class="text-yellow-300">Irtiza Mazhar</span>
+      </h1>
+      <p class="text-lg md:text-2xl text-indigo-100 mb-3">Full Stack Developer & Software Engineer</p>
+      <p class="text-indigo-200 max-w-3xl mx-auto mb-8">
+        Frontend Developer specializing in React.js, Java Spring Boot, and API integration with 1+ years of experience building innovative web applications and games.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#projects" class="btn-primary">
+          <i class="fas fa-folder-open mr-2"></i>View My Work
+        </a>
+        <a href="#contact" class="btn-secondary">
+          <i class="fas fa-envelope mr-2"></i>Get In Touch
+        </a>
+      </div>
+
+      <div class="mt-10 flex justify-center space-x-6">
+        <a href="https://www.linkedin.com/in/engr-irtiza-mazhar-739ba4241/" target="_blank" rel="noopener" class="text-white hover:text-yellow-300 transition">
+          <i class="fab fa-linkedin text-2xl"></i>
+        </a>
+        <a href="https://github.com/Irtizamazhar" target="_blank" rel="noopener" class="text-white hover:text-yellow-300 transition">
+          <i class="fab fa-github text-2xl"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold section-title">About Me</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+  <h3 class="text-2xl font-semibold mb-6">Professional Journey</h3>
+  <p class="text-gray-600 mb-6 leading-relaxed">
+    I'm a passionate Full Stack Developer with 1.5 years of hands-on experience and 9+ projects completed. Currently, I am focused on Android development with Kotlin, building robust and scalable mobile applications. I also have extensive experience in React.js development, creating responsive and user-friendly web applications. Previously, I worked at Phebsoft (Pvt.) Ltd., where I gained valuable experience in API integration and backend development using Java Spring Boot. I have successfully delivered projects across multiple domains, showcasing versatility in both mobile and web technologies.
+  </p>
+  <p class="text-gray-600 mb-6 leading-relaxed">
+    With 1.5 years of hands-on experience, I've successfully delivered 9+ comprehensive projects ranging from AI-powered applications to mobile apps and multiplayer games, demonstrating versatility across different domains and technologies including Android, React.js, and full-stack development.
+  </p>
+  <div class="grid grid-cols-2 gap-4">
+    <div class="stat-card">
+      <div class="text-2xl font-bold text-indigo-600">9+</div>
+      <div class="text-gray-600">Projects Completed</div>
+    </div>
+    <div class="stat-card">
+      <div class="text-2xl font-bold text-green-600">1.5</div>
+      <div class="text-gray-600">Years Experience</div>
+    </div>
+  </div>
+</div>
+        <div class="space-y-4">
+          <h3 class="text-2xl font-semibold mb-6">Core Competencies</h3>
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <i class="fas fa-code text-indigo-600 mr-3"></i>
+              <span class="text-gray-700">Frontend Development (React.js, JavaScript, HTML5, CSS3)</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-server text-green-600 mr-3"></i>
+              <span class="text-gray-700">Backend Development (Java Spring Boot, Node.js)</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-plug text-purple-600 mr-3"></i>
+              <span class="text-gray-700">API Integration & Development</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-mobile-alt text-red-600 mr-3"></i>
+              <span class="text-gray-700">Responsive Web Design</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-gamepad text-yellow-600 mr-3"></i>
+              <span class="text-gray-700">Game Development (Unity, C#)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+<section id="skills" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold section-title">Technical Skills</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Frontend -->
+        <div class="soft-card p-6 rounded-xl shadow-lg card-hover">
+          <div class="text-center mb-4">
+            <i class="fas fa-code text-4xl text-indigo-600 mb-2"></i>
+            <h3 class="text-xl font-semibold">Frontend</h3>
+          </div>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center"><span class="text-gray-600">React.js</span><span class="text-indigo-600 font-semibold">90%</span></div>
+            <div class="skill-track"><div class="skill-bar" data-width="90%"></div></div>
+
+            <div class="flex justify-between items-center"><span class="text-gray-600">JavaScript</span><span class="text-indigo-600 font-semibold">85%</span></div>
+            <div class="skill-track"><div class="skill-bar" data-width="85%"></div></div>
+
+            <div class="flex justify-between items-center"><span class="text-gray-600">HTML/CSS</span><span class="text-indigo-600 font-semibold">95%</span></div>
+            <div class="skill-track"><div class="skill-bar" data-width="95%"></div></div>
+          </div>
+        </div>
+
+        <!-- Backend -->
+        <div class="soft-card p-6 rounded-xl shadow-lg card-hover">
+          <div class="text-center mb-4">
+            <i class="fas fa-server text-4xl text-green-600 mb-2"></i>
+            <h3 class="text-xl font-semibold">Backend</h3>
+          </div>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center"><span class="text-gray-600">Java Spring Boot</span><span class="text-green-600 font-semibold">80%</span></div>
+            <div class="skill-track"><div class="skill-bar bg-green-600" data-width="80%"></div></div>
+
+            <div class="flex justify-between items-center"><span class="text-gray-600">Node.js</span><span class="text-green-600 font-semibold">75%</span></div>
+            <div class="skill-track"><div class="skill-bar bg-green-600" data-width="75%"></div></div>
+
+            <div class="flex justify-between items-center"><span class="text-gray-600">API Integration</span><span class="text-green-600 font-semibold">85%</span></div>
+            <div class="skill-track"><div class="skill-bar bg-green-600" data-width="85%"></div></div>
+          </div>
+        </div>
+
+        <!-- Languages -->
+        <div class="soft-card p-6 rounded-xl shadow-lg card-hover">
+          <div class="text-center mb-4">
+            <i class="fas fa-laptop-code text-4xl text-purple-600 mb-2"></i>
+            <h3 class="text-xl font-semibold">Languages</h3>
+          </div>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center"><span class="text-gray-600">Java</span><span class="text-purple-600 font-semibold">85%</span></div>
+            <div class="skill-track"><div class="skill-bar bg-purple-600" data-width="85%"></div></div>
+
+            <div class="flex justify-between items-center"><span class="text-gray-600">C++</span><span class="text-purple-600 font-semibold">75%</span></div>
+            <div class="skill-track"><div class="skill-bar bg-purple-600" data-width="75%"></div></div>
+
+            <div class="flex justify-between items-center"><span class="text-gray-600">C#</span><span class="text-purple-600 font-semibold">70%</span></div>
+            <div class="skill-track"><div class="skill-bar bg-purple-600" data-width="70%"></div></div>
+          </div>
+        </div>
+
+        <!-- Mobile Development -->
+        <div class="soft-card p-6 rounded-xl shadow-lg card-hover">
+          <div class="text-center mb-4">
+            <i class="fab fa-android text-4xl text-green-500 mb-2"></i>
+            <h3 class="text-xl font-semibold">Android Development</h3>
+          </div>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center"><span class="text-gray-600">Kotlin</span><span class="text-green-600 font-semibold">80%</span></div>
+            <div class="skill-track"><div class="skill-bar bg-green-500" data-width="80%"></div></div>
+
+            <div class="flex justify-between items-center"><span class="text-gray-600">Android SDK</span><span class="text-green-600 font-semibold">75%</span></div>
+            <div class="skill-track"><div class="skill-bar bg-green-500" data-width="75%"></div></div>
+
+            <div class="flex justify-between items-center"><span class="text-gray-600">XML Layout</span><span class="text-green-600 font-semibold">85%</span></div>
+            <div class="skill-track"><div class="skill-bar bg-green-500" data-width="85%"></div></div>
+          </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="soft-card p-6 rounded-xl shadow-lg card-hover">
+          <div class="text-center mb-4">
+            <i class="fas fa-tools text-4xl text-red-600 mb-2"></i>
+            <h3 class="text-xl font-semibold">Tools</h3>
+          </div>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center"><span class="text-gray-600">Redux</span><span class="text-red-600 font-semibold">80%</span></div>
+            <div class="skill-track"><div class="skill-bar bg-red-600" data-width="80%"></div></div>
+
+            <div class="flex justify-between items-center"><span class="text-gray-600">Unity</span><span class="text-red-600 font-semibold">75%</span></div>
+            <div class="skill-track"><div class="skill-bar bg-red-600" data-width="75%"></div></div>
+
+            <div class="flex justify-between items-center"><span class="text-gray-600">Firebase</span><span class="text-red-600 font-semibold">70%</span></div>
+            <div class="skill-track"><div class="skill-bar bg-red-600" data-width="70%"></div></div>
+          </div>
+        </div>
+
+        <!-- Database & Others -->
+        <div class="soft-card p-6 rounded-xl shadow-lg card-hover">
+          <div class="text-center mb-4">
+            <i class="fas fa-database text-4xl text-blue-600 mb-2"></i>
+            <h3 class="text-xl font-semibold">Database & Others</h3>
+          </div>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center"><span class="text-gray-600">MySQL</span><span class="text-blue-600 font-semibold">80%</span></div>
+            <div class="skill-track"><div class="skill-bar bg-blue-600" data-width="80%"></div></div>
+
+            <div class="flex justify-between items-center"><span class="text-gray-600">MongoDB</span><span class="text-blue-600 font-semibold">70%</span></div>
+            <div class="skill-track"><div class="skill-bar bg-blue-600" data-width="70%"></div></div>
+
+            <div class="flex justify-between items-center"><span class="text-gray-600">Git/GitHub</span><span class="text-blue-600 font-semibold">90%</span></div>
+            <div class="skill-track"><div class="skill-bar bg-blue-600" data-width="90%"></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold section-title">Professional Experience</h2>
+      </div>
+
+      <div class="relative">
+        <div class="timeline-line"></div>
+
+        <!-- Current Position - Android Development -->
+        <div class="relative md:grid md:grid-cols-2 md:gap-12 mb-12">
+          <div class="glass-card p-6 rounded-xl shadow-lg border-l-4 border-blue-500 card-hover relative">
+            
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+              <h3 class="text-xl font-semibold">Android Developer</h3>
+              <span class="text-sm text-blue-600 font-medium">Jan 2025 - Present</span>
+            </div>
+            <p class="text-blue-600 font-medium mb-2">Quantack Stack Taxila, Pakistan</p>
+            <p class="text-gray-700 leading-relaxed">
+              Currently working as an Android Developer specializing in Kotlin development. Building robust and scalable mobile applications with modern Android architecture components, implementing clean architecture patterns, and creating responsive UIs that provide excellent user experiences across different devices and screen sizes.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-50 text-blue-800 text-sm rounded-full">Kotlin</span>
+              <span class="px-3 py-1 bg-blue-50 text-blue-800 text-sm rounded-full">Android SDK</span>
+              <span class="px-3 py-1 bg-blue-50 text-blue-800 text-sm rounded-full">Jetpack Compose</span>
+              <span class="px-3 py-1 bg-blue-50 text-blue-800 text-sm rounded-full">MVVM Architecture</span>
+              <span class="px-3 py-1 bg-blue-50 text-blue-800 text-sm rounded-full">Room Database</span>
+              <span class="px-3 py-1 bg-blue-50 text-blue-800 text-sm rounded-full">RESTful APIs</span>
+            </div>
+          </div>
+          <div class="hidden md:block"></div>
+        </div>
+
+        <!-- Previous Position -->
+        <div class="relative md:grid md:grid-cols-2 md:gap-12 mb-12">
+          <div class="hidden md:block"></div>
+          <div class="glass-card p-6 rounded-xl shadow-lg border-l-4 border-indigo-500 card-hover relative md:col-start-2">
+           
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+              <h3 class="text-xl font-semibold">Junior Software Developer</h3>
+              <span class="text-sm text-indigo-600 font-medium">July 2024 - Jan 2025</span>
+            </div>
+            <p class="text-indigo-600 font-medium mb-2">Phebsoft (Pvt.) Ltd. • Islamabad, Pakistan</p>
+            <p class="text-gray-700 leading-relaxed">
+              Worked at Phebsoft (Pvt.) Ltd., where I specialized in API integration using the Versori platform. I developed and maintained seamless connections between frontend and backend systems, enabling efficient data flow and automation across applications. My role involved configuring and testing APIs to ensure reliable communication and enhanced user experience.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">Versori Platform</span>
+              <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">Api Testing</span>
+              <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">Postman</span>
+              <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">API Integration</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Internship -->
+        <div class="relative md:grid md:grid-cols-2 md:gap-12 mb-12">
+          <div class="glass-card p-6 rounded-xl shadow-lg border-l-4 border-indigo-500 card-hover relative">
+            
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+              <h3 class="text-xl font-semibold">Web Developer (Intern)</h3>
+              <span class="text-sm text-indigo-600 font-medium">July 2023 - Dec 2023</span>
+            </div>
+            <p class="text-indigo-600 font-medium mb-2">Glaxit Software House • Taxila, Pakistan</p>
+            <p class="text-gray-700 leading-relaxed">
+              Learned and practiced React.js development at Glaxit Software House, gaining hands-on experience in building responsive user interfaces, managing state with React hooks, and working on real-world projects to strengthen frontend development skills.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">React JS</span>
+              <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">JavaScript</span>
+              <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">ES6</span>
+              <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">Tailwind CSS</span>
+              <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">Redux</span>
+              <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">React Hooks</span>
+            </div>
+          </div>
+          <div class="hidden md:block"></div>
+        </div>
+
+        <!-- Education -->
+        <div class="relative md:grid md:grid-cols-2 md:gap-12">
+          <div class="hidden md:block"></div>
+          <div class="glass-card p-6 rounded-xl shadow-lg border-l-4 border-green-500 card-hover relative md:col-start-2">
+            
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+              <h3 class="text-xl font-semibold">Bachelor's in Computer Software Engineering</h3>
+              <span class="text-sm text-green-600 font-medium">June 2020 - June 2024</span>
+            </div>
+            <p class="text-green-600 font-medium mb-2">Sir Syed CASE Institute of Technology • Pakistan</p>
+            <p class="text-gray-700 leading-relaxed">
+              Completed comprehensive education in Computer Software Engineering with focus on software development, programming languages, database systems, and modern web technologies. Achieved strong foundation in both theoretical concepts and practical implementation.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-green-50 text-green-800 text-sm rounded-full">Software Engineering</span>
+              <span class="px-3 py-1 bg-green-50 text-green-800 text-sm rounded-full">Data Structures</span>
+              <span class="px-3 py-1 bg-green-50 text-green-800 text-sm rounded-full">Web Development</span>
+              <span class="px-3 py-1 bg-green-50 text-green-800 text-sm rounded-full">Database Systems</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold section-title">Featured Projects</h2>
+        <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+          A showcase of my diverse portfolio spanning web applications, AI-powered platforms, games, and enterprise solutions.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Laundry Thai -->
+        <div class="project-card">
+          <div class="project-image" style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);">
+            <div class="project-overlay">
+              <div>
+                <h3 class="project-title">Laundry Thai</h3>
+                <div class="flex space-x-2">
+                  <a href="https://www.mylaundrythai.com/" target="_blank" rel="noopener" class="bg-white text-indigo-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fas fa-external-link-alt mr-1"></i>Live Demo
+                  </a>
+                  <a href="https://github.com/Irtizamazhar/mylaundrythai.com" target="_blank" rel="noopener" class="bg-white text-gray-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fab fa-github mr-1"></i>Code
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="absolute top-4 right-4">
+              <i class="fas fa-tshirt text-white text-3xl"></i>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="text-xl font-semibold mb-3">Laundry Thai</h3>
+            <p class="project-description">
+              A responsive laundry service website built with React and Redux, featuring modern UI/UX design and seamless user experience for easy laundry service.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tech-badge">React</span>
+              <span class="tech-badge">Redux</span>
+              <span class="tech-badge">CSS</span>
+              <span class="tech-badge">Node.js</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trading Bot -->
+        <div class="project-card">
+          <div class="project-image" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+            <div class="project-overlay">
+              <div>
+                <h3 class="project-title">Trading Bot</h3>
+                <div class="flex space-x-2">
+                  <a href="https://tradingbt.netlify.app/" target="_blank" rel="noopener" class="bg-white text-green-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fas fa-external-link-alt mr-1"></i>Live Demo
+                  </a>
+                  <a href="https://github.com/Irtizamazhar/Trading-bot" target="_blank" rel="noopener" class="bg-white text-gray-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fab fa-github mr-1"></i>Code
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="absolute top-4 right-4">
+              <i class="fas fa-chart-line text-white text-3xl"></i>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="text-xl font-semibold mb-3">Trading Bot</h3>
+            <p class="project-description">
+              A sophisticated trading bot platform with automated trade execution features, real-time market analysis, and comprehensive trading dashboard.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tech-badge">React</span>
+              <span class="tech-badge">Node.js</span>
+              <span class="tech-badge">Python</span>
+              <span class="tech-badge">Redux</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MediaMind AI -->
+        <div class="project-card">
+          <div class="project-image" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
+            <div class="project-overlay">
+              <div>
+                <h3 class="project-title">MediaMind AI</h3>
+                <div class="flex space-x-2">
+                  <a href="https://mediamindai.netlify.app/" target="_blank" rel="noopener" class="bg-white text-purple-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fas fa-external-link-alt mr-1"></i>Live Demo
+                  </a>
+                  <a href="https://github.com/Irtizamazhar/mindmedia" target="_blank" rel="noopener" class="bg-white text-gray-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fab fa-github mr-1"></i>Code
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="absolute top-4 right-4">
+              <i class="fas fa-brain text-white text-3xl"></i>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="text-xl font-semibold mb-3">MediaMind AI</h3>
+            <p class="project-description">
+              Transform your words into text, speech, images, and videos with one seamless AI-powered interface. Advanced multimedia generation platform.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tech-badge">React</span>
+              <span class="tech-badge">Redux</span>
+              <span class="tech-badge">Tailwind CSS</span>
+              <span class="tech-badge">API</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mind Game -->
+        <div class="project-card">
+          <div class="project-image" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+            <div class="project-overlay">
+              <div>
+                <h3 class="project-title">Mind Game</h3>
+                <div class="flex space-x-2">
+                  <a href="https://cardlogic.netlify.app/" target="_blank" rel="noopener" class="bg-white text-yellow-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fas fa-external-link-alt mr-1"></i>Live Demo
+                  </a>
+                  <a href="https://github.com/Irtizamazhar/Game" target="_blank" rel="noopener" class="bg-white text-gray-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fab fa-github mr-1"></i>Code
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="absolute top-4 right-4">
+              <i class="fas fa-puzzle-piece text-white text-3xl"></i>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="text-xl font-semibold mb-3">Mind Game</h3>
+            <p class="project-description">
+              A mind game platform with challenging puzzles and brain-teasing features designed to enhance cognitive abilities and provide entertainment.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tech-badge">HTML</span>
+              <span class="tech-badge">CSS</span>
+              <span class="tech-badge">JavaScript</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ChatSphere -->
+        <div class="project-card">
+          <div class="project-image" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);">
+            <div class="project-overlay">
+              <div>
+                <h3 class="project-title">ChatSphere</h3>
+                <div class="flex space-x-2">
+                  <a href="https://helpfullbot.netlify.app/" target="_blank" rel="noopener" class="bg-white text-indigo-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fas fa-external-link-alt mr-1"></i>Live Demo
+                  </a>
+                  <a href="https://github.com/Irtizamazhar/Chatbot" target="_blank" rel="noopener" class="bg-white text-gray-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fab fa-github mr-1"></i>Code
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="absolute top-4 right-4">
+              <i class="fas fa-comments text-white text-3xl"></i>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="text-xl font-semibold mb-3">ChatSphere</h3>
+            <p class="project-description">
+              A sleek, AI-inspired chatbot UI that brings conversations to life with smooth animations and smart design, providing intuitive user interaction.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tech-badge">React</span>
+              <span class="tech-badge">Redux</span>
+              <span class="tech-badge">Tailwind CSS</span>
+              <span class="tech-badge">API</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- WellNexus Health -->
+        <div class="project-card">
+          <div class="project-image" style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);">
+            <div class="project-overlay">
+              <div>
+                <h3 class="project-title">WellNexus Health</h3>
+                <div class="flex space-x-2">
+                  <a href="https://wellnexushealth.netlify.app/" target="_blank" rel="noopener" class="bg-white text-pink-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fas fa-external-link-alt mr-1"></i>Live Demo
+                  </a>
+                  <a href="https://github.com/Irtizamazhar/Wellnexus" target="_blank" rel="noopener" class="bg-white text-gray-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fab fa-github mr-1"></i>Code
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="absolute top-4 right-4">
+              <i class="fas fa-heartbeat text-white text-3xl"></i>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="text-xl font-semibold mb-3">WellNexus Health</h3>
+            <p class="project-description">
+              Empowering your health journey with cutting-edge technology and personalized insights for comprehensive health management and monitoring.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tech-badge">React</span>
+              <span class="tech-badge">Redux</span>
+              <span class="tech-badge">Tailwind CSS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Surah Yaseen App -->
+        <div class="project-card">
+          <div class="project-image" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);">
+            <div class="project-overlay">
+              <div>
+                <h3 class="project-title">Surah Yaseen App</h3>
+                <div class="flex space-x-2">
+                  <a href="https://drive.google.com/drive/folders/1AawesHGVfqcAGeGs5Htiql24KDmbj69-?usp=drive_link" target="_blank" rel="noopener" class="bg-white text-green-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fas fa-download mr-1"></i>Download APK
+                  </a>
+                  <a href="#" class="bg-white text-gray-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fab fa-github mr-1"></i>Code
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="absolute top-4 right-4">
+              <i class="fas fa-book-quran text-white text-3xl"></i>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="text-xl font-semibold mb-3">Surah Yaseen App</h3>
+            <p class="project-description">
+              An Android application featuring Surah Yaseen with beautiful Arabic text, translation, transliteration, and audio recitation for spiritual enrichment.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tech-badge">Kotlin</span>
+              <span class="tech-badge">Android</span>
+              <span class="tech-badge">XML</span>
+              <span class="tech-badge">MediaPlayer</span>
+            </div>
+            <!-- Add QR Code section for easy mobile download -->
+            <div class="mt-4 p-3 bg-gray-50 rounded-lg text-center">
+              <p class="text-sm text-gray-600 mb-2">Scan to download on mobile</p>
+              <!-- QR Code for Surah Yaseen App -->
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://drive.google.com/drive/folders/1AawesHGVfqcAGeGs5Htiql24KDmbj69-?usp=drive_link" 
+                   alt="QR Code for Surah Yaseen App" class="qr-code mx-auto">
+            </div>
+          </div>
+        </div>
+
+        <!-- SMS Gateway App -->
+        <div class="project-card">
+          <div class="project-image" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">
+            <div class="project-overlay">
+              <div>
+                <h3 class="project-title">SMS Gateway App</h3>
+                <div class="flex space-x-2">
+                  <a href="https://drive.google.com/drive/folders/1xjjarVPHZxprVysZGbKW0OUWyo4aTcKm?usp=drive_link" target="_blank" rel="noopener" class="bg-white text-cyan-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fas fa-download mr-1"></i>Download APK
+                  </a>
+                  <a href="#" class="bg-white text-gray-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fab fa-github mr-1"></i>Code
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="absolute top-4 right-4">
+              <i class="fas fa-sms text-white text-3xl"></i>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="text-xl font-semibold mb-3">SMS Gateway App</h3>
+            <p class="project-description">
+              An Android application for SMS gateway functionality with features for sending, receiving, and managing SMS messages programmatically.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tech-badge">Kotlin</span>
+              <span class="tech-badge">Android</span>
+              <span class="tech-badge">SMS API</span>
+              <span class="tech-badge">Permissions</span>
+            </div>
+            <!-- Add QR Code section for easy mobile download -->
+            <div class="mt-4 p-3 bg-gray-50 rounded-lg text-center">
+              <p class="text-sm text-gray-600 mb-2">Scan to download on mobile</p>
+              <!-- QR Code for SMS Gateway App -->
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://drive.google.com/drive/folders/1xjjarVPHZxprVysZGbKW0OUWyo4aTcKm?usp=drive_link" 
+                   alt="QR Code for SMS Gateway App" class="qr-code mx-auto">
+            </div>
+          </div>
+        </div>
+
+        <!-- Multiplayer Game -->
+        <div class="project-card">
+          <div class="project-image" style="background: linear-gradient(135deg, #374151 0%, #111827 100%);">
+            <div class="project-overlay">
+              <div>
+                <h3 class="project-title">Multiplayer Game (FPS)</h3>
+                <div class="flex space-x-2">
+                  <a href="#" class="bg-white text-gray-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fas fa-external-link-alt mr-1"></i>View Project
+                  </a>
+                  <a href="https://github.com/Irtizamazhar/Multiplayer-Game" target="_blank" rel="noopener" class="bg-white text-gray-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fab fa-github mr-1"></i>Code
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="absolute top-4 right-4">
+              <i class="fas fa-gamepad text-white text-3xl"></i>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="text-xl font-semibold mb-3">Multiplayer Game (FPS)</h3>
+            <p class="project-description">
+              A multiplayer game platform with interactive gameplay and real-time features, providing immersive first-person shooter experience with advanced networking.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tech-badge">C#</span>
+              <span class="tech-badge">PUN</span>
+              <span class="tech-badge">Unity</span>
+              <span class="tech-badge">Assets</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center mt-12">
+        <p class="text-gray-600 mb-6">Interested in seeing more of my work?</p>
+        <a href="#contact" class="btn-primary">
+          <i class="fas fa-envelope mr-2"></i>Get In Touch
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20 gradient-bg">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-white mb-4">Let's Work Together</h2>
+        <p class="text-indigo-100 text-lg max-w-2xl mx-auto">
+          I'm always interested in new opportunities and exciting projects. Let's discuss how we can bring your ideas to life.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+        <div class="text-white space-y-6">
+          <h3 class="text-2xl font-semibold">Get In Touch</h3>
+
+          <div class="flex items-start">
+            <i class="fas fa-map-marker-alt text-2xl text-yellow-300 mr-4"></i>
+            <div>
+              <div class="font-semibold">Location</div>
+              <div class="text-indigo-100">Taxila, Punjab, Pakistan</div>
+            </div>
+          </div>
+
+          <div class="flex items-start">
+            <i class="fas fa-envelope text-2xl text-yellow-300 mr-4"></i>
+            <div>
+              <div class="font-semibold">Email</div>
+              <div class="text-indigo-100">irtizamazhar@gmail.com</div>
+            </div>
+          </div>
+
+          <div class="flex items-start">
+            <i class="fab fa-linkedin text-2xl text-yellow-300 mr-4"></i>
+            <div>
+              <div class="font-semibold">LinkedIn</div>
+              <a href="https://www.linkedin.com/in/Eng-irtiza-mazhar/" target="_blank" rel="noopener" class="text-indigo-100 hover:text-white transition">
+                linkedin.com/in/engr-irtiza-mazhar
+              </a>
+            </div>
+          </div>
+        </div>
+
+     <div class="bg-white p-8 rounded-xl shadow-2xl">
+  <h3 class="text-2xl font-semibold text-gray-800 mb-6">Send Message</h3>
+  
+  <!-- Netlify Form with proper configuration -->
+  <form name="contact" method="POST" netlify netlify-honeypot="bot-field" class="space-y-6">
+    <!-- Netlify Hidden Fields -->
+    <input type="hidden" name="form-name" value="contact" />
+    <p class="hidden">
+      <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+    </p>
+    
+    <div class="grid md:grid-cols-2 gap-4">
+      <div>
+        <label for="name" class="block text-gray-700 font-medium mb-2">Name *</label>
+        <input 
+          type="text" 
+          id="name"
+          name="name" 
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 focus:outline-none transition-all" 
+          required
+          placeholder="Your full name"
+        >
+      </div>
+      <div>
+        <label for="email" class="block text-gray-700 font-medium mb-2">Email *</label>
+        <input 
+          type="email" 
+          id="email"
+          name="email" 
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 focus:outline-none transition-all" 
+          required
+          placeholder="your.email@example.com"
+        >
+      </div>
+    </div>
+    
+    <div>
+      <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+      <input 
+        type="text" 
+        id="subject"
+        name="subject" 
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 focus:outline-none transition-all"
+        placeholder="Project inquiry or collaboration"
+      >
+    </div>
+    
+    <div>
+      <label for="message" class="block text-gray-700 font-medium mb-2">Message *</label>
+      <textarea 
+        id="message"
+        name="message" 
+        rows="4" 
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 focus:outline-none resize-none transition-all" 
+        required
+        placeholder="Tell me about your project or how we can work together..."
+      ></textarea>
+    </div>
+    
+    <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition duration-300 transform hover:scale-105 flex items-center justify-center">
+      <i class="fas fa-paper-plane mr-2"></i>Send Message
+    </button>
+  </form>
+  
+  <!-- Success/Error Messages -->
+  <div id="form-success" class="hidden mt-4 p-4 bg-green-100 text-green-800 rounded-lg border border-green-300">
+    <i class="fas fa-check-circle mr-2"></i>
+    <span>Thank you! Your message has been sent successfully. I'll get back to you soon.</span>
+  </div>
+  
+  <div id="form-error" class="hidden mt-4 p-4 bg-red-100 text-red-800 rounded-lg border border-red-300">
+    <i class="fas fa-exclamation-circle mr-2"></i>
+    <span>Sorry, there was an error sending your message. Please try again or email me directly at <a href="mailto:irtizamazhar@gmail.com" class="underline">irtizamazhar@gmail.com</a></span>
+  </div>
+</div>
+
+<script>
+// Netlify Forms handling
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.querySelector('form[name="contact"]');
+  const successMessage = document.getElementById('form-success');
+  const errorMessage = document.getElementById('form-error');
+  
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      // Let Netlify handle the form submission naturally
+      // We'll just show a loading state
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+      submitBtn.disabled = true;
+      
+      // Hide previous messages
+      if (successMessage) successMessage.classList.add('hidden');
+      if (errorMessage) errorMessage.classList.add('hidden');
+      
+      // Simple validation
+      const requiredFields = form.querySelectorAll('[required]');
+      let isValid = true;
+      
+      requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+          isValid = false;
+          field.classList.add('border-red-500', 'bg-red-50');
+        } else {
+          field.classList.remove('border-red-500', 'bg-red-50');
+        }
+      });
+      
+      if (!isValid) {
+        if (errorMessage) {
+          errorMessage.innerHTML = '<i class="fas fa-exclamation-circle mr-2"></i><span>Please fill in all required fields marked with *</span>';
+          errorMessage.classList.remove('hidden');
+        }
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        e.preventDefault();
+        return;
+      }
+      
+      // Let the form submit naturally to Netlify
+      // Netlify will redirect to a success page or show success state
+      
+      // Reset button after 3 seconds (in case redirect doesn't happen)
+      setTimeout(() => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }, 3000);
+    });
+  }
+  
+  // Check URL for success parameter (Netlify adds this after successful submission)
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('success') === 'true') {
+    if (successMessage) {
+      successMessage.classList.remove('hidden');
+      // Scroll to form
+      successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+  
+  // Real-time validation
+  const inputs = form.querySelectorAll('input, textarea');
+  inputs.forEach(input => {
+    input.addEventListener('input', function() {
+      if (this.hasAttribute('required')) {
+        if (this.value.trim()) {
+          this.classList.remove('border-red-500', 'bg-red-50');
+          this.classList.add('border-green-500', 'bg-green-50');
+        } else {
+          this.classList.remove('border-green-500', 'bg-green-50');
+          this.classList.add('border-gray-300', 'bg-white');
+        }
+      }
+    });
+    
+    input.addEventListener('blur', function() {
+      if (this.hasAttribute('required') && !this.value.trim()) {
+        this.classList.add('border-red-500', 'bg-red-50');
+      }
+    });
+  });
+});
+</script>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Engr. Irtiza Mazhar</h3>
+          <p class="text-gray-400 leading-relaxed">
+            Full Stack Developer passionate about creating innovative web applications and solving complex problems through technology.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="#about" class="hover:text-white transition">About</a></li>
+            <li><a href="#skills" class="hover:text-white transition">Skills</a></li>
+            <li><a href="#projects" class="hover:text-white transition">Projects</a></li>
+            <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Connect</h3>
+          <div class="flex space-x-4">
+            <a href="https://www.linkedin.com/in/engr-irtiza-mazhar-739ba4241/" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition">
+              <i class="fab fa-linkedin text-2xl"></i>
+            </a>
+            <a href="https://github.com/Irtizamazhar" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition">
+              <i class="fab fa-github text-2xl"></i>
+            </a>
+            <a href="mailto:irtizamazhar@gmail.com" class="text-gray-400 hover:text-white transition">
+              <i class="fas fa-envelope text-2xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2024 Engr. Irtiza Mazhar. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        // Only intercept if the target exists on page
+        const target = document.querySelector(this.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+        // Close mobile menu on click
+        const mobileMenu = document.querySelector('.mobile-menu');
+        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden');
+        }
+      });
+    });
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Skill bars animate on first view
+    const skillObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.skill-bar').forEach(bar => {
+            const w = bar.getAttribute('data-width') || '0%';
+            bar.style.width = w;
+          });
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.35 });
+
+    document.querySelectorAll('#skills .soft-card').forEach(card => {
+      skillObserver.observe(card);
+    });
+  </script>
+</body>
+</html>
