@@ -11,36 +11,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 
   <style>
-    * { font-family: 'Inter', sans-serif; }
+    * { 
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
+    
     :root{
-      --brand-1:#6366f1; /* indigo-500 */
-      --brand-2:#8b5cf6; /* violet-500 */
-      --brand-3:#10b981; /* emerald-500 */
-      --ink:#0f172a;     /* slate-900 */
-      --muted:#64748b;   /* slate-500 */
+      --brand-1:#6366f1;
+      --brand-2:#8b5cf6;
+      --brand-3:#10b981;
+      --brand-4:#f59e0b;
     }
     
-    /* Global polish */
-    body { color: var(--ink); }
-    .gradient-bg{ background: linear-gradient(135deg, var(--brand-1) 0%, var(--brand-2) 100%); }
-    .soft-card{ background: linear-gradient(145deg,#ffffff 0%,#f8fafc 100%); border:1px solid #e2e8f0; }
-    .glass-card{
-      background: rgba(255,255,255,0.8);
-      backdrop-filter: saturate(140%) blur(6px);
-      border: 1px solid rgba(226,232,240,0.75);
-    }
-    .card-hover{ transition: transform .3s ease, box-shadow .3s ease; }
-    .card-hover:hover{
-      transform: translateY(-6px) scale(1.01);
-      box-shadow: 0 25px 40px -15px rgba(2,6,23,.25);
+    .gradient-bg{ 
+      background: linear-gradient(135deg, var(--brand-1) 0%, var(--brand-2) 100%);
     }
     
-    /* New card design */
     .project-card {
       background: white;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08);
       transition: all 0.3s ease;
       border: 1px solid rgba(226,232,240,0.8);
     }
@@ -74,23 +65,6 @@
     
     .project-card:hover .project-overlay {
       opacity: 1;
-    }
-    
-    .project-title {
-      color: white;
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    
-    .project-content {
-      padding: 24px;
-    }
-    
-    .project-description {
-      color: var(--muted);
-      margin-bottom: 20px;
-      line-height: 1.6;
     }
     
     .tech-badge{
@@ -135,10 +109,6 @@
       transition: width .9s cubic-bezier(.22,.61,.36,1); 
     }
     
-    nav a{ font-weight:500; }
-    nav a:hover{ color: var(--brand-1); }
-    
-    /* Timeline vertical line for Experience */
     .timeline-line{ 
       position:absolute; 
       left:1.25rem; 
@@ -155,7 +125,6 @@
       } 
     }
     
-    /* New button styles */
     .btn-primary {
       background: linear-gradient(135deg, var(--brand-1) 0%, var(--brand-2) 100%);
       color: white;
@@ -191,37 +160,71 @@
       color: var(--brand-1);
     }
     
-    /* Stats cards */
-    .stat-card {
+    .glass-card{
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: saturate(140%) blur(6px);
+      border: 1px solid rgba(226,232,240,0.75);
+    }
+    
+    .project-filter {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    
+    .filter-btn {
+      padding: 8px 16px;
+      border-radius: 20px;
       background: white;
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 5px 15px -5px rgba(0,0,0,0.05);
-      text-align: center;
-      transition: transform 0.3s ease;
+      border: 1px solid #e2e8f0;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
     
-    .stat-card:hover {
+    .filter-btn.active {
+      background: var(--brand-1);
+      color: white;
+      border-color: var(--brand-1);
+    }
+    
+    .project-count {
+      background: var(--brand-1);
+      color: white;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      margin-left: 8px;
+    }
+    
+    .floating-action-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--brand-1);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 15px rgba(99,102,241,0.4);
+      z-index: 1000;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .floating-action-btn:hover {
       transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(99,102,241,0.5);
     }
     
-    /* Hero section improvements */
-    .hero-content {
-      position: relative;
-      z-index: 10;
-    }
-    
-    .hero-bg-pattern {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      opacity: 0.5;
-    }
-    
-    /* QR Code styling */
     .qr-code {
       width: 120px;
       height: 120px;
@@ -272,10 +275,14 @@
     </div>
   </nav>
 
+  <!-- Floating Action Button -->
+  <div class="floating-action-btn back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
   <!-- Hero -->
   <section id="home" class="gradient-bg min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
-    <div class="hero-bg-pattern"></div>
-    <div class="max-w-7xl mx-auto px-6 py-16 text-center hero-content">
+    <div class="max-w-7xl mx-auto px-6 py-16 text-center">
       <div class="mb-8">
         <img
           src="https://cdn1.genspark.ai/user-upload-image/crawler_linkedin_profile_thumbnails/6e5ca79b-6ce4-35bf-b0ec-8f407dbf1a41"
@@ -318,24 +325,24 @@
       </div>
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
-  <h3 class="text-2xl font-semibold mb-6">Professional Journey</h3>
-  <p class="text-gray-600 mb-6 leading-relaxed">
-    I'm a passionate Full Stack Developer with 1.5 years of hands-on experience and 9+ projects completed. Currently, I am focused on Android development with Kotlin, building robust and scalable mobile applications. I also have extensive experience in React.js development, creating responsive and user-friendly web applications. Previously, I worked at Phebsoft (Pvt.) Ltd., where I gained valuable experience in API integration and backend development using Java Spring Boot. I have successfully delivered projects across multiple domains, showcasing versatility in both mobile and web technologies.
-  </p>
-  <p class="text-gray-600 mb-6 leading-relaxed">
-    With 1.5 years of hands-on experience, I've successfully delivered 9+ comprehensive projects ranging from AI-powered applications to mobile apps and multiplayer games, demonstrating versatility across different domains and technologies including Android, React.js, and full-stack development.
-  </p>
-  <div class="grid grid-cols-2 gap-4">
-    <div class="stat-card">
-      <div class="text-2xl font-bold text-indigo-600">9+</div>
-      <div class="text-gray-600">Projects Completed</div>
-    </div>
-    <div class="stat-card">
-      <div class="text-2xl font-bold text-green-600">1.5</div>
-      <div class="text-gray-600">Years Experience</div>
-    </div>
-  </div>
-</div>
+          <h3 class="text-2xl font-semibold mb-6">Professional Journey</h3>
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            I'm a passionate Full Stack Developer with 1.5 years of hands-on experience and 16+ projects completed. Currently, I am focused on Android development with Kotlin, building robust and scalable mobile applications. I also have extensive experience in React.js development, creating responsive and user-friendly web applications.
+          </p>
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            Previously, I worked at Phebsoft (Pvt.) Ltd., where I gained valuable experience in API integration and backend development using Java Spring Boot. I have successfully delivered projects across multiple domains, showcasing versatility in both mobile and web technologies.
+          </p>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+              <div class="text-2xl font-bold text-indigo-600">16+</div>
+              <div class="text-gray-600">Projects Completed</div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+              <div class="text-2xl font-bold text-green-600">1.5</div>
+              <div class="text-gray-600">Years Experience</div>
+            </div>
+          </div>
+        </div>
         <div class="space-y-4">
           <h3 class="text-2xl font-semibold mb-6">Core Competencies</h3>
           <div class="space-y-4">
@@ -353,7 +360,7 @@
             </div>
             <div class="flex items-center">
               <i class="fas fa-mobile-alt text-red-600 mr-3"></i>
-              <span class="text-gray-700">Responsive Web Design</span>
+              <span class="text-gray-700">Mobile App Development (Android, Kotlin)</span>
             </div>
             <div class="flex items-center">
               <i class="fas fa-gamepad text-yellow-600 mr-3"></i>
@@ -366,7 +373,7 @@
   </section>
 
   <!-- Skills -->
-<section id="skills" class="py-20 bg-gray-50">
+  <section id="skills" class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-16">
         <h2 class="text-4xl font-bold section-title">Technical Skills</h2>
@@ -374,7 +381,7 @@
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         <!-- Frontend -->
-        <div class="soft-card p-6 rounded-xl shadow-lg card-hover">
+        <div class="bg-white p-6 rounded-xl shadow-lg">
           <div class="text-center mb-4">
             <i class="fas fa-code text-4xl text-indigo-600 mb-2"></i>
             <h3 class="text-xl font-semibold">Frontend</h3>
@@ -392,7 +399,7 @@
         </div>
 
         <!-- Backend -->
-        <div class="soft-card p-6 rounded-xl shadow-lg card-hover">
+        <div class="bg-white p-6 rounded-xl shadow-lg">
           <div class="text-center mb-4">
             <i class="fas fa-server text-4xl text-green-600 mb-2"></i>
             <h3 class="text-xl font-semibold">Backend</h3>
@@ -409,75 +416,39 @@
           </div>
         </div>
 
-        <!-- Languages -->
-        <div class="soft-card p-6 rounded-xl shadow-lg card-hover">
-          <div class="text-center mb-4">
-            <i class="fas fa-laptop-code text-4xl text-purple-600 mb-2"></i>
-            <h3 class="text-xl font-semibold">Languages</h3>
-          </div>
-          <div class="space-y-3">
-            <div class="flex justify-between items-center"><span class="text-gray-600">Java</span><span class="text-purple-600 font-semibold">85%</span></div>
-            <div class="skill-track"><div class="skill-bar bg-purple-600" data-width="85%"></div></div>
-
-            <div class="flex justify-between items-center"><span class="text-gray-600">C++</span><span class="text-purple-600 font-semibold">75%</span></div>
-            <div class="skill-track"><div class="skill-bar bg-purple-600" data-width="75%"></div></div>
-
-            <div class="flex justify-between items-center"><span class="text-gray-600">C#</span><span class="text-purple-600 font-semibold">70%</span></div>
-            <div class="skill-track"><div class="skill-bar bg-purple-600" data-width="70%"></div></div>
-          </div>
-        </div>
-
         <!-- Mobile Development -->
-        <div class="soft-card p-6 rounded-xl shadow-lg card-hover">
+        <div class="bg-white p-6 rounded-xl shadow-lg">
           <div class="text-center mb-4">
             <i class="fab fa-android text-4xl text-green-500 mb-2"></i>
-            <h3 class="text-xl font-semibold">Android Development</h3>
+            <h3 class="text-xl font-semibold">Mobile Development</h3>
           </div>
           <div class="space-y-3">
-            <div class="flex justify-between items-center"><span class="text-gray-600">Kotlin</span><span class="text-green-600 font-semibold">80%</span></div>
-            <div class="skill-track"><div class="skill-bar bg-green-500" data-width="80%"></div></div>
+            <div class="flex justify-between items-center"><span class="text-gray-600">Kotlin</span><span class="text-green-600 font-semibold">85%</span></div>
+            <div class="skill-track"><div class="skill-bar bg-green-500" data-width="85%"></div></div>
 
-            <div class="flex justify-between items-center"><span class="text-gray-600">Android SDK</span><span class="text-green-600 font-semibold">75%</span></div>
-            <div class="skill-track"><div class="skill-bar bg-green-500" data-width="75%"></div></div>
+            <div class="flex justify-between items-center"><span class="text-gray-600">Android SDK</span><span class="text-green-600 font-semibold">80%</span></div>
+            <div class="skill-track"><div class="skill-bar bg-green-500" data-width="80%"></div></div>
 
             <div class="flex justify-between items-center"><span class="text-gray-600">XML Layout</span><span class="text-green-600 font-semibold">85%</span></div>
             <div class="skill-track"><div class="skill-bar bg-green-500" data-width="85%"></div></div>
           </div>
         </div>
 
-        <!-- Tools -->
-        <div class="soft-card p-6 rounded-xl shadow-lg card-hover">
+        <!-- Game Development -->
+        <div class="bg-white p-6 rounded-xl shadow-lg">
           <div class="text-center mb-4">
-            <i class="fas fa-tools text-4xl text-red-600 mb-2"></i>
-            <h3 class="text-xl font-semibold">Tools</h3>
+            <i class="fas fa-gamepad text-4xl text-purple-600 mb-2"></i>
+            <h3 class="text-xl font-semibold">Game Development</h3>
           </div>
           <div class="space-y-3">
-            <div class="flex justify-between items-center"><span class="text-gray-600">Redux</span><span class="text-red-600 font-semibold">80%</span></div>
-            <div class="skill-track"><div class="skill-bar bg-red-600" data-width="80%"></div></div>
+            <div class="flex justify-between items-center"><span class="text-gray-600">Unity</span><span class="text-purple-600 font-semibold">75%</span></div>
+            <div class="skill-track"><div class="skill-bar bg-purple-600" data-width="75%"></div></div>
 
-            <div class="flex justify-between items-center"><span class="text-gray-600">Unity</span><span class="text-red-600 font-semibold">75%</span></div>
-            <div class="skill-track"><div class="skill-bar bg-red-600" data-width="75%"></div></div>
+            <div class="flex justify-between items-center"><span class="text-gray-600">C#</span><span class="text-purple-600 font-semibold">70%</span></div>
+            <div class="skill-track"><div class="skill-bar bg-purple-600" data-width="70%"></div></div>
 
-            <div class="flex justify-between items-center"><span class="text-gray-600">Firebase</span><span class="text-red-600 font-semibold">70%</span></div>
-            <div class="skill-track"><div class="skill-bar bg-red-600" data-width="70%"></div></div>
-          </div>
-        </div>
-
-        <!-- Database & Others -->
-        <div class="soft-card p-6 rounded-xl shadow-lg card-hover">
-          <div class="text-center mb-4">
-            <i class="fas fa-database text-4xl text-blue-600 mb-2"></i>
-            <h3 class="text-xl font-semibold">Database & Others</h3>
-          </div>
-          <div class="space-y-3">
-            <div class="flex justify-between items-center"><span class="text-gray-600">MySQL</span><span class="text-blue-600 font-semibold">80%</span></div>
-            <div class="skill-track"><div class="skill-bar bg-blue-600" data-width="80%"></div></div>
-
-            <div class="flex justify-between items-center"><span class="text-gray-600">MongoDB</span><span class="text-blue-600 font-semibold">70%</span></div>
-            <div class="skill-track"><div class="skill-bar bg-blue-600" data-width="70%"></div></div>
-
-            <div class="flex justify-between items-center"><span class="text-gray-600">Git/GitHub</span><span class="text-blue-600 font-semibold">90%</span></div>
-            <div class="skill-track"><div class="skill-bar bg-blue-600" data-width="90%"></div></div>
+            <div class="flex justify-between items-center"><span class="text-gray-600">PUN</span><span class="text-purple-600 font-semibold">65%</span></div>
+            <div class="skill-track"><div class="skill-bar bg-purple-600" data-width="65%"></div></div>
           </div>
         </div>
 
@@ -495,25 +466,21 @@
       <div class="relative">
         <div class="timeline-line"></div>
 
-        <!-- Current Position - Android Development -->
+        <!-- Current Position -->
         <div class="relative md:grid md:grid-cols-2 md:gap-12 mb-12">
-          <div class="glass-card p-6 rounded-xl shadow-lg border-l-4 border-blue-500 card-hover relative">
-            
+          <div class="glass-card p-6 rounded-xl shadow-lg border-l-4 border-blue-500">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
               <h3 class="text-xl font-semibold">Android Developer</h3>
               <span class="text-sm text-blue-600 font-medium">Jan 2025 - Present</span>
             </div>
             <p class="text-blue-600 font-medium mb-2">Quantack Stack Taxila, Pakistan</p>
             <p class="text-gray-700 leading-relaxed">
-              Currently working as an Android Developer specializing in Kotlin development. Building robust and scalable mobile applications with modern Android architecture components, implementing clean architecture patterns, and creating responsive UIs that provide excellent user experiences across different devices and screen sizes.
+              Currently working as an Android Developer specializing in Kotlin development. Building robust and scalable mobile applications with modern Android architecture components.
             </p>
             <div class="mt-4 flex flex-wrap gap-2">
               <span class="px-3 py-1 bg-blue-50 text-blue-800 text-sm rounded-full">Kotlin</span>
               <span class="px-3 py-1 bg-blue-50 text-blue-800 text-sm rounded-full">Android SDK</span>
               <span class="px-3 py-1 bg-blue-50 text-blue-800 text-sm rounded-full">Jetpack Compose</span>
-              <span class="px-3 py-1 bg-blue-50 text-blue-800 text-sm rounded-full">MVVM Architecture</span>
-              <span class="px-3 py-1 bg-blue-50 text-blue-800 text-sm rounded-full">Room Database</span>
-              <span class="px-3 py-1 bg-blue-50 text-blue-800 text-sm rounded-full">RESTful APIs</span>
             </div>
           </div>
           <div class="hidden md:block"></div>
@@ -522,69 +489,36 @@
         <!-- Previous Position -->
         <div class="relative md:grid md:grid-cols-2 md:gap-12 mb-12">
           <div class="hidden md:block"></div>
-          <div class="glass-card p-6 rounded-xl shadow-lg border-l-4 border-indigo-500 card-hover relative md:col-start-2">
-           
+          <div class="glass-card p-6 rounded-xl shadow-lg border-l-4 border-indigo-500 md:col-start-2">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
               <h3 class="text-xl font-semibold">Junior Software Developer</h3>
               <span class="text-sm text-indigo-600 font-medium">July 2024 - Jan 2025</span>
             </div>
             <p class="text-indigo-600 font-medium mb-2">Phebsoft (Pvt.) Ltd. • Islamabad, Pakistan</p>
             <p class="text-gray-700 leading-relaxed">
-              Worked at Phebsoft (Pvt.) Ltd., where I specialized in API integration using the Versori platform. I developed and maintained seamless connections between frontend and backend systems, enabling efficient data flow and automation across applications. My role involved configuring and testing APIs to ensure reliable communication and enhanced user experience.
+              Worked at Phebsoft (Pvt.) Ltd., where I specialized in API integration using the Versori platform. I developed and maintained seamless connections between frontend and backend systems.
             </p>
             <div class="mt-4 flex flex-wrap gap-2">
               <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">Versori Platform</span>
-              <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">Api Testing</span>
+              <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">API Testing</span>
               <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">Postman</span>
-              <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">API Integration</span>
             </div>
           </div>
-        </div>
-
-        <!-- Internship -->
-        <div class="relative md:grid md:grid-cols-2 md:gap-12 mb-12">
-          <div class="glass-card p-6 rounded-xl shadow-lg border-l-4 border-indigo-500 card-hover relative">
-            
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-              <h3 class="text-xl font-semibold">Web Developer (Intern)</h3>
-              <span class="text-sm text-indigo-600 font-medium">July 2023 - Dec 2023</span>
-            </div>
-            <p class="text-indigo-600 font-medium mb-2">Glaxit Software House • Taxila, Pakistan</p>
-            <p class="text-gray-700 leading-relaxed">
-              Learned and practiced React.js development at Glaxit Software House, gaining hands-on experience in building responsive user interfaces, managing state with React hooks, and working on real-world projects to strengthen frontend development skills.
-            </p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">React JS</span>
-              <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">JavaScript</span>
-              <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">ES6</span>
-              <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">Tailwind CSS</span>
-              <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">Redux</span>
-              <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">React Hooks</span>
-            </div>
-          </div>
-          <div class="hidden md:block"></div>
         </div>
 
         <!-- Education -->
         <div class="relative md:grid md:grid-cols-2 md:gap-12">
-          <div class="hidden md:block"></div>
-          <div class="glass-card p-6 rounded-xl shadow-lg border-l-4 border-green-500 card-hover relative md:col-start-2">
-            
+          <div class="glass-card p-6 rounded-xl shadow-lg border-l-4 border-green-500">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
               <h3 class="text-xl font-semibold">Bachelor's in Computer Software Engineering</h3>
               <span class="text-sm text-green-600 font-medium">June 2020 - June 2024</span>
             </div>
             <p class="text-green-600 font-medium mb-2">Sir Syed CASE Institute of Technology • Pakistan</p>
             <p class="text-gray-700 leading-relaxed">
-              Completed comprehensive education in Computer Software Engineering with focus on software development, programming languages, database systems, and modern web technologies. Achieved strong foundation in both theoretical concepts and practical implementation.
+              Completed comprehensive education in Computer Software Engineering with focus on software development, programming languages, database systems, and modern web technologies.
             </p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-green-50 text-green-800 text-sm rounded-full">Software Engineering</span>
-              <span class="px-3 py-1 bg-green-50 text-green-800 text-sm rounded-full">Data Structures</span>
-              <span class="px-3 py-1 bg-green-50 text-green-800 text-sm rounded-full">Web Development</span>
-              <span class="px-3 py-1 bg-green-50 text-green-800 text-sm rounded-full">Database Systems</span>
-            </div>
           </div>
+          <div class="hidden md:block"></div>
         </div>
       </div>
     </div>
@@ -596,18 +530,27 @@
       <div class="text-center mb-16">
         <h2 class="text-4xl font-bold section-title">Featured Projects</h2>
         <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
-          A showcase of my diverse portfolio spanning web applications, AI-powered platforms, games, and enterprise solutions.
+          A showcase of my diverse portfolio spanning web applications, mobile apps, desktop applications, and games.
         </p>
+      </div>
+
+      <!-- Project Filter -->
+      <div class="project-filter">
+        <button class="filter-btn active" data-filter="all">All Projects <span class="project-count">16</span></button>
+        <button class="filter-btn" data-filter="web">Web Apps <span class="project-count">8</span></button>
+        <button class="filter-btn" data-filter="mobile">Mobile Apps <span class="project-count">5</span></button>
+        <button class="filter-btn" data-filter="desktop">Desktop Apps <span class="project-count">2</span></button>
+        <button class="filter-btn" data-filter="game">Games <span class="project-count">1</span></button>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-        <!-- Laundry Thai -->
-        <div class="project-card">
+        <!-- Web Projects -->
+        <div class="project-card web">
           <div class="project-image" style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);">
             <div class="project-overlay">
               <div>
-                <h3 class="project-title">Laundry Thai</h3>
+                <h3 class="text-white text-xl font-bold mb-2">Laundry Thai</h3>
                 <div class="flex space-x-2">
                   <a href="https://www.mylaundrythai.com/" target="_blank" rel="noopener" class="bg-white text-indigo-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
                     <i class="fas fa-external-link-alt mr-1"></i>Live Demo
@@ -622,12 +565,12 @@
               <i class="fas fa-tshirt text-white text-3xl"></i>
             </div>
           </div>
-          <div class="project-content">
+          <div class="p-6">
             <h3 class="text-xl font-semibold mb-3">Laundry Thai</h3>
-            <p class="project-description">
-              A responsive laundry service website built with React and Redux, featuring modern UI/UX design and seamless user experience for easy laundry service.
+            <p class="text-gray-600 mb-4 leading-relaxed">
+              A responsive laundry service website built with React and Redux, featuring modern UI/UX design and seamless user experience.
             </p>
-            <div class="flex flex-wrap gap-2 mb-4">
+            <div class="flex flex-wrap gap-2">
               <span class="tech-badge">React</span>
               <span class="tech-badge">Redux</span>
               <span class="tech-badge">CSS</span>
@@ -636,12 +579,11 @@
           </div>
         </div>
 
-        <!-- Trading Bot -->
-        <div class="project-card">
+        <div class="project-card web">
           <div class="project-image" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
             <div class="project-overlay">
               <div>
-                <h3 class="project-title">Trading Bot</h3>
+                <h3 class="text-white text-xl font-bold mb-2">Trading Bot</h3>
                 <div class="flex space-x-2">
                   <a href="https://tradingbt.netlify.app/" target="_blank" rel="noopener" class="bg-white text-green-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
                     <i class="fas fa-external-link-alt mr-1"></i>Live Demo
@@ -656,12 +598,12 @@
               <i class="fas fa-chart-line text-white text-3xl"></i>
             </div>
           </div>
-          <div class="project-content">
+          <div class="p-6">
             <h3 class="text-xl font-semibold mb-3">Trading Bot</h3>
-            <p class="project-description">
+            <p class="text-gray-600 mb-4 leading-relaxed">
               A sophisticated trading bot platform with automated trade execution features, real-time market analysis, and comprehensive trading dashboard.
             </p>
-            <div class="flex flex-wrap gap-2 mb-4">
+            <div class="flex flex-wrap gap-2">
               <span class="tech-badge">React</span>
               <span class="tech-badge">Node.js</span>
               <span class="tech-badge">Python</span>
@@ -670,12 +612,11 @@
           </div>
         </div>
 
-        <!-- MediaMind AI -->
-        <div class="project-card">
+        <div class="project-card web">
           <div class="project-image" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
             <div class="project-overlay">
               <div>
-                <h3 class="project-title">MediaMind AI</h3>
+                <h3 class="text-white text-xl font-bold mb-2">MediaMind AI</h3>
                 <div class="flex space-x-2">
                   <a href="https://mediamindai.netlify.app/" target="_blank" rel="noopener" class="bg-white text-purple-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
                     <i class="fas fa-external-link-alt mr-1"></i>Live Demo
@@ -690,12 +631,12 @@
               <i class="fas fa-brain text-white text-3xl"></i>
             </div>
           </div>
-          <div class="project-content">
+          <div class="p-6">
             <h3 class="text-xl font-semibold mb-3">MediaMind AI</h3>
-            <p class="project-description">
+            <p class="text-gray-600 mb-4 leading-relaxed">
               Transform your words into text, speech, images, and videos with one seamless AI-powered interface. Advanced multimedia generation platform.
             </p>
-            <div class="flex flex-wrap gap-2 mb-4">
+            <div class="flex flex-wrap gap-2">
               <span class="tech-badge">React</span>
               <span class="tech-badge">Redux</span>
               <span class="tech-badge">Tailwind CSS</span>
@@ -704,12 +645,11 @@
           </div>
         </div>
 
-        <!-- Mind Game -->
-        <div class="project-card">
+        <div class="project-card web">
           <div class="project-image" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
             <div class="project-overlay">
               <div>
-                <h3 class="project-title">Mind Game</h3>
+                <h3 class="text-white text-xl font-bold mb-2">Mind Game</h3>
                 <div class="flex space-x-2">
                   <a href="https://cardlogic.netlify.app/" target="_blank" rel="noopener" class="bg-white text-yellow-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
                     <i class="fas fa-external-link-alt mr-1"></i>Live Demo
@@ -724,12 +664,12 @@
               <i class="fas fa-puzzle-piece text-white text-3xl"></i>
             </div>
           </div>
-          <div class="project-content">
+          <div class="p-6">
             <h3 class="text-xl font-semibold mb-3">Mind Game</h3>
-            <p class="project-description">
+            <p class="text-gray-600 mb-4 leading-relaxed">
               A mind game platform with challenging puzzles and brain-teasing features designed to enhance cognitive abilities and provide entertainment.
             </p>
-            <div class="flex flex-wrap gap-2 mb-4">
+            <div class="flex flex-wrap gap-2">
               <span class="tech-badge">HTML</span>
               <span class="tech-badge">CSS</span>
               <span class="tech-badge">JavaScript</span>
@@ -737,12 +677,11 @@
           </div>
         </div>
 
-        <!-- ChatSphere -->
-        <div class="project-card">
+        <div class="project-card web">
           <div class="project-image" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);">
             <div class="project-overlay">
               <div>
-                <h3 class="project-title">ChatSphere</h3>
+                <h3 class="text-white text-xl font-bold mb-2">ChatSphere</h3>
                 <div class="flex space-x-2">
                   <a href="https://helpfullbot.netlify.app/" target="_blank" rel="noopener" class="bg-white text-indigo-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
                     <i class="fas fa-external-link-alt mr-1"></i>Live Demo
@@ -757,12 +696,12 @@
               <i class="fas fa-comments text-white text-3xl"></i>
             </div>
           </div>
-          <div class="project-content">
+          <div class="p-6">
             <h3 class="text-xl font-semibold mb-3">ChatSphere</h3>
-            <p class="project-description">
+            <p class="text-gray-600 mb-4 leading-relaxed">
               A sleek, AI-inspired chatbot UI that brings conversations to life with smooth animations and smart design, providing intuitive user interaction.
             </p>
-            <div class="flex flex-wrap gap-2 mb-4">
+            <div class="flex flex-wrap gap-2">
               <span class="tech-badge">React</span>
               <span class="tech-badge">Redux</span>
               <span class="tech-badge">Tailwind CSS</span>
@@ -771,12 +710,11 @@
           </div>
         </div>
 
-        <!-- WellNexus Health -->
-        <div class="project-card">
+        <div class="project-card web">
           <div class="project-image" style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);">
             <div class="project-overlay">
               <div>
-                <h3 class="project-title">WellNexus Health</h3>
+                <h3 class="text-white text-xl font-bold mb-2">WellNexus Health</h3>
                 <div class="flex space-x-2">
                   <a href="https://wellnexushealth.netlify.app/" target="_blank" rel="noopener" class="bg-white text-pink-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
                     <i class="fas fa-external-link-alt mr-1"></i>Live Demo
@@ -791,12 +729,12 @@
               <i class="fas fa-heartbeat text-white text-3xl"></i>
             </div>
           </div>
-          <div class="project-content">
+          <div class="p-6">
             <h3 class="text-xl font-semibold mb-3">WellNexus Health</h3>
-            <p class="project-description">
+            <p class="text-gray-600 mb-4 leading-relaxed">
               Empowering your health journey with cutting-edge technology and personalized insights for comprehensive health management and monitoring.
             </p>
-            <div class="flex flex-wrap gap-2 mb-4">
+            <div class="flex flex-wrap gap-2">
               <span class="tech-badge">React</span>
               <span class="tech-badge">Redux</span>
               <span class="tech-badge">Tailwind CSS</span>
@@ -804,12 +742,78 @@
           </div>
         </div>
 
-        <!-- Surah Yaseen App -->
-        <div class="project-card">
+        <div class="project-card web">
+          <div class="project-image" style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);">
+            <div class="project-overlay">
+              <div>
+                <h3 class="text-white text-xl font-bold mb-2">TaskFlow Manager</h3>
+                <div class="flex space-x-2">
+                  <a href="https://taskflowmanager.netlify.app/" target="_blank" rel="noopener" class="bg-white text-orange-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fas fa-external-link-alt mr-1"></i>Live Demo
+                  </a>
+                  <a href="https://github.com/Irtizamazhar/TaskFlow-Manager" target="_blank" rel="noopener" class="bg-white text-gray-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fab fa-github mr-1"></i>Code
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="absolute top-4 right-4">
+              <i class="fas fa-tasks text-white text-3xl"></i>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-3">TaskFlow Manager</h3>
+            <p class="text-gray-600 mb-4 leading-relaxed">
+              A comprehensive task management application with drag-and-drop functionality, team collaboration features, and real-time updates.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-badge">React</span>
+              <span class="tech-badge">Node.js</span>
+              <span class="tech-badge">MongoDB</span>
+              <span class="tech-badge">Socket.io</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card web">
+          <div class="project-image" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
+            <div class="project-overlay">
+              <div>
+                <h3 class="text-white text-xl font-bold mb-2">E-Commerce Platform</h3>
+                <div class="flex space-x-2">
+                  <a href="https://shopnex.netlify.app/" target="_blank" rel="noopener" class="bg-white text-purple-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fas fa-external-link-alt mr-1"></i>Live Demo
+                  </a>
+                  <a href="https://github.com/Irtizamazhar/E-Commerce-Platform" target="_blank" rel="noopener" class="bg-white text-gray-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fab fa-github mr-1"></i>Code
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="absolute top-4 right-4">
+              <i class="fas fa-shopping-cart text-white text-3xl"></i>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-3">E-Commerce Platform</h3>
+            <p class="text-gray-600 mb-4 leading-relaxed">
+              A full-featured e-commerce platform with product catalog, shopping cart, payment integration, and admin dashboard.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-badge">React</span>
+              <span class="tech-badge">Spring Boot</span>
+              <span class="tech-badge">MySQL</span>
+              <span class="tech-badge">Stripe API</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Apps -->
+        <div class="project-card mobile">
           <div class="project-image" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);">
             <div class="project-overlay">
               <div>
-                <h3 class="project-title">Surah Yaseen App</h3>
+                <h3 class="text-white text-xl font-bold mb-2">Surah Yaseen App</h3>
                 <div class="flex space-x-2">
                   <a href="https://drive.google.com/drive/folders/1AawesHGVfqcAGeGs5Htiql24KDmbj69-?usp=drive_link" target="_blank" rel="noopener" class="bg-white text-green-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
                     <i class="fas fa-download mr-1"></i>Download APK
@@ -824,10 +828,10 @@
               <i class="fas fa-book-quran text-white text-3xl"></i>
             </div>
           </div>
-          <div class="project-content">
+          <div class="p-6">
             <h3 class="text-xl font-semibold mb-3">Surah Yaseen App</h3>
-            <p class="project-description">
-              An Android application featuring Surah Yaseen with beautiful Arabic text, translation, transliteration, and audio recitation for spiritual enrichment.
+            <p class="text-gray-600 mb-4 leading-relaxed">
+              An Android application featuring Surah Yaseen with beautiful Arabic text, translation, transliteration, and audio recitation.
             </p>
             <div class="flex flex-wrap gap-2 mb-4">
               <span class="tech-badge">Kotlin</span>
@@ -835,22 +839,19 @@
               <span class="tech-badge">XML</span>
               <span class="tech-badge">MediaPlayer</span>
             </div>
-            <!-- Add QR Code section for easy mobile download -->
             <div class="mt-4 p-3 bg-gray-50 rounded-lg text-center">
-              <p class="text-sm text-gray-600 mb-2">Scan to download on mobile</p>
-              <!-- QR Code for Surah Yaseen App -->
+              <p class="text-sm text-gray-600 mb-2">Scan to download</p>
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://drive.google.com/drive/folders/1AawesHGVfqcAGeGs5Htiql24KDmbj69-?usp=drive_link" 
-                   alt="QR Code for Surah Yaseen App" class="qr-code mx-auto">
+                   alt="QR Code" class="qr-code mx-auto">
             </div>
           </div>
         </div>
 
-        <!-- SMS Gateway App -->
-        <div class="project-card">
+        <div class="project-card mobile">
           <div class="project-image" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">
             <div class="project-overlay">
               <div>
-                <h3 class="project-title">SMS Gateway App</h3>
+                <h3 class="text-white text-xl font-bold mb-2">SMS Gateway App</h3>
                 <div class="flex space-x-2">
                   <a href="https://drive.google.com/drive/folders/1xjjarVPHZxprVysZGbKW0OUWyo4aTcKm?usp=drive_link" target="_blank" rel="noopener" class="bg-white text-cyan-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
                     <i class="fas fa-download mr-1"></i>Download APK
@@ -865,9 +866,9 @@
               <i class="fas fa-sms text-white text-3xl"></i>
             </div>
           </div>
-          <div class="project-content">
+          <div class="p-6">
             <h3 class="text-xl font-semibold mb-3">SMS Gateway App</h3>
-            <p class="project-description">
+            <p class="text-gray-600 mb-4 leading-relaxed">
               An Android application for SMS gateway functionality with features for sending, receiving, and managing SMS messages programmatically.
             </p>
             <div class="flex flex-wrap gap-2 mb-4">
@@ -876,22 +877,187 @@
               <span class="tech-badge">SMS API</span>
               <span class="tech-badge">Permissions</span>
             </div>
-            <!-- Add QR Code section for easy mobile download -->
             <div class="mt-4 p-3 bg-gray-50 rounded-lg text-center">
-              <p class="text-sm text-gray-600 mb-2">Scan to download on mobile</p>
-              <!-- QR Code for SMS Gateway App -->
+              <p class="text-sm text-gray-600 mb-2">Scan to download</p>
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://drive.google.com/drive/folders/1xjjarVPHZxprVysZGbKW0OUWyo4aTcKm?usp=drive_link" 
-                   alt="QR Code for SMS Gateway App" class="qr-code mx-auto">
+                   alt="QR Code" class="qr-code mx-auto">
             </div>
           </div>
         </div>
 
-        <!-- Multiplayer Game -->
-        <div class="project-card">
+        <!-- NEW KOTLIN APPS -->
+        <div class="project-card mobile">
+          <div class="project-image" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+            <div class="project-overlay">
+              <div>
+                <h3 class="text-white text-xl font-bold mb-2">FinanceFlow</h3>
+                <div class="flex space-x-2">
+                  <a href="https://github.com/Irtizamazhar/FinanceFlow-Android" target="_blank" rel="noopener" class="bg-white text-green-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fab fa-github mr-1"></i>Source Code
+                  </a>
+                  <a href="https://drive.google.com/file/d/financeflow-apk/view" target="_blank" rel="noopener" class="bg-white text-gray-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fas fa-download mr-1"></i>APK
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="absolute top-4 right-4">
+              <i class="fas fa-wallet text-white text-3xl"></i>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-3">FinanceFlow</h3>
+            <p class="text-gray-600 mb-4 leading-relaxed">
+              A beautiful expense tracker app with budget management, spending analytics, and financial insights. Features real-time charts and smart categorization.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-badge">Kotlin</span>
+              <span class="tech-badge">Room DB</span>
+              <span class="tech-badge">MPAndroidChart</span>
+              <span class="tech-badge">MVVM</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card mobile">
+          <div class="project-image" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
+            <div class="project-overlay">
+              <div>
+                <h3 class="text-white text-xl font-bold mb-2">TaskMaster Pro</h3>
+                <div class="flex space-x-2">
+                  <a href="https://github.com/Irtizamazhar/TaskMaster-Pro" target="_blank" rel="noopener" class="bg-white text-purple-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fab fa-github mr-1"></i>Source Code
+                  </a>
+                  <a href="https://drive.google.com/file/d/taskmaster-apk/view" target="_blank" rel="noopener" class="bg-white text-gray-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fas fa-download mr-1"></i>APK
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="absolute top-4 right-4">
+              <i class="fas fa-tasks text-white text-3xl"></i>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-3">TaskMaster Pro</h3>
+            <p class="text-gray-600 mb-4 leading-relaxed">
+              Advanced task management app with collaborative features, real-time sync, priority system, and smart notifications for team productivity.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-badge">Kotlin</span>
+              <span class="tech-badge">Firebase</span>
+              <span class="tech-badge">Coroutines</span>
+              <span class="tech-badge">Material Design</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card mobile">
+          <div class="project-image" style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);">
+            <div class="project-overlay">
+              <div>
+                <h3 class="text-white text-xl font-bold mb-2">Weather Pro</h3>
+                <div class="flex space-x-2">
+                  <a href="https://github.com/Irtizamazhar/Weather-Pro" target="_blank" rel="noopener" class="bg-white text-blue-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fab fa-github mr-1"></i>Source Code
+                  </a>
+                  <a href="https://drive.google.com/file/d/weather-pro-apk/view" target="_blank" rel="noopener" class="bg-white text-gray-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fas fa-download mr-1"></i>APK
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="absolute top-4 right-4">
+              <i class="fas fa-cloud-sun text-white text-3xl"></i>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-3">Weather Pro</h3>
+            <p class="text-gray-600 mb-4 leading-relaxed">
+              Beautiful weather app with real-time forecasts, severe weather alerts, and interactive maps. Features location-based weather and detailed analytics.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-badge">Kotlin</span>
+              <span class="tech-badge">Retrofit</span>
+              <span class="tech-badge">Location Services</span>
+              <span class="tech-badge">Weather API</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desktop Apps -->
+        <div class="project-card desktop">
+          <div class="project-image" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);">
+            <div class="project-overlay">
+              <div>
+                <h3 class="text-white text-xl font-bold mb-2">Student Management</h3>
+                <div class="flex space-x-2">
+                  <a href="https://github.com/Irtizamazhar/Student-Management-System" target="_blank" rel="noopener" class="bg-white text-red-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fab fa-github mr-1"></i>Source Code
+                  </a>
+                  <a href="https://drive.google.com/file/d/1example123/view" target="_blank" rel="noopener" class="bg-white text-gray-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fas fa-download mr-1"></i>JAR
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="absolute top-4 right-4">
+              <i class="fas fa-user-graduate text-white text-3xl"></i>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-3">Student Management System</h3>
+            <p class="text-gray-600 mb-4 leading-relaxed">
+              A comprehensive desktop application built with Java Swing for managing student records, grades, attendance, and academic information.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-badge">Java</span>
+              <span class="tech-badge">Swing</span>
+              <span class="tech-badge">MySQL</span>
+              <span class="tech-badge">JDBC</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card desktop">
+          <div class="project-image" style="background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);">
+            <div class="project-overlay">
+              <div>
+                <h3 class="text-white text-xl font-bold mb-2">Library Management</h3>
+                <div class="flex space-x-2">
+                  <a href="https://github.com/Irtizamazhar/Library-Management-System" target="_blank" rel="noopener" class="bg-white text-purple-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fab fa-github mr-1"></i>Source Code
+                  </a>
+                  <a href="https://drive.google.com/file/d/1example456/view" target="_blank" rel="noopener" class="bg-white text-gray-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
+                    <i class="fas fa-download mr-1"></i>JAR
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="absolute top-4 right-4">
+              <i class="fas fa-book text-white text-3xl"></i>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-3">Library Management System</h3>
+            <p class="text-gray-600 mb-4 leading-relaxed">
+              A feature-rich desktop application for library management with book catalog, member management, borrowing system, and automated notifications.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-badge">Java</span>
+              <span class="tech-badge">JavaFX</span>
+              <span class="tech-badge">SQLite</span>
+              <span class="tech-badge">Scene Builder</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- GAME PROJECT -->
+        <div class="project-card game">
           <div class="project-image" style="background: linear-gradient(135deg, #374151 0%, #111827 100%);">
             <div class="project-overlay">
               <div>
-                <h3 class="project-title">Multiplayer Game (FPS)</h3>
+                <h3 class="text-white text-xl font-bold mb-2">Multiplayer Game (FPS)</h3>
                 <div class="flex space-x-2">
                   <a href="#" class="bg-white text-gray-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-100 transition">
                     <i class="fas fa-external-link-alt mr-1"></i>View Project
@@ -906,12 +1072,12 @@
               <i class="fas fa-gamepad text-white text-3xl"></i>
             </div>
           </div>
-          <div class="project-content">
+          <div class="p-6">
             <h3 class="text-xl font-semibold mb-3">Multiplayer Game (FPS)</h3>
-            <p class="project-description">
+            <p class="text-gray-600 mb-4 leading-relaxed">
               A multiplayer game platform with interactive gameplay and real-time features, providing immersive first-person shooter experience with advanced networking.
             </p>
-            <div class="flex flex-wrap gap-2 mb-4">
+            <div class="flex flex-wrap gap-2">
               <span class="tech-badge">C#</span>
               <span class="tech-badge">PUN</span>
               <span class="tech-badge">Unity</span>
@@ -972,170 +1138,65 @@
           </div>
         </div>
 
-     <div class="bg-white p-8 rounded-xl shadow-2xl">
-  <h3 class="text-2xl font-semibold text-gray-800 mb-6">Send Message</h3>
-  
-  <!-- Netlify Form with proper configuration -->
-  <form name="contact" method="POST" netlify netlify-honeypot="bot-field" class="space-y-6">
-    <!-- Netlify Hidden Fields -->
-    <input type="hidden" name="form-name" value="contact" />
-    <p class="hidden">
-      <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-    </p>
-    
-    <div class="grid md:grid-cols-2 gap-4">
-      <div>
-        <label for="name" class="block text-gray-700 font-medium mb-2">Name *</label>
-        <input 
-          type="text" 
-          id="name"
-          name="name" 
-          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 focus:outline-none transition-all" 
-          required
-          placeholder="Your full name"
-        >
-      </div>
-      <div>
-        <label for="email" class="block text-gray-700 font-medium mb-2">Email *</label>
-        <input 
-          type="email" 
-          id="email"
-          name="email" 
-          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 focus:outline-none transition-all" 
-          required
-          placeholder="your.email@example.com"
-        >
-      </div>
-    </div>
-    
-    <div>
-      <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
-      <input 
-        type="text" 
-        id="subject"
-        name="subject" 
-        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 focus:outline-none transition-all"
-        placeholder="Project inquiry or collaboration"
-      >
-    </div>
-    
-    <div>
-      <label for="message" class="block text-gray-700 font-medium mb-2">Message *</label>
-      <textarea 
-        id="message"
-        name="message" 
-        rows="4" 
-        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 focus:outline-none resize-none transition-all" 
-        required
-        placeholder="Tell me about your project or how we can work together..."
-      ></textarea>
-    </div>
-    
-    <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition duration-300 transform hover:scale-105 flex items-center justify-center">
-      <i class="fas fa-paper-plane mr-2"></i>Send Message
-    </button>
-  </form>
-  
-  <!-- Success/Error Messages -->
-  <div id="form-success" class="hidden mt-4 p-4 bg-green-100 text-green-800 rounded-lg border border-green-300">
-    <i class="fas fa-check-circle mr-2"></i>
-    <span>Thank you! Your message has been sent successfully. I'll get back to you soon.</span>
-  </div>
-  
-  <div id="form-error" class="hidden mt-4 p-4 bg-red-100 text-red-800 rounded-lg border border-red-300">
-    <i class="fas fa-exclamation-circle mr-2"></i>
-    <span>Sorry, there was an error sending your message. Please try again or email me directly at <a href="mailto:irtizamazhar@gmail.com" class="underline">irtizamazhar@gmail.com</a></span>
-  </div>
-</div>
-
-<script>
-// Netlify Forms handling
-document.addEventListener('DOMContentLoaded', function() {
-  const form = document.querySelector('form[name="contact"]');
-  const successMessage = document.getElementById('form-success');
-  const errorMessage = document.getElementById('form-error');
-  
-  if (form) {
-    form.addEventListener('submit', function(e) {
-      // Let Netlify handle the form submission naturally
-      // We'll just show a loading state
-      const submitBtn = form.querySelector('button[type="submit"]');
-      const originalText = submitBtn.innerHTML;
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
-      submitBtn.disabled = true;
-      
-      // Hide previous messages
-      if (successMessage) successMessage.classList.add('hidden');
-      if (errorMessage) errorMessage.classList.add('hidden');
-      
-      // Simple validation
-      const requiredFields = form.querySelectorAll('[required]');
-      let isValid = true;
-      
-      requiredFields.forEach(field => {
-        if (!field.value.trim()) {
-          isValid = false;
-          field.classList.add('border-red-500', 'bg-red-50');
-        } else {
-          field.classList.remove('border-red-500', 'bg-red-50');
-        }
-      });
-      
-      if (!isValid) {
-        if (errorMessage) {
-          errorMessage.innerHTML = '<i class="fas fa-exclamation-circle mr-2"></i><span>Please fill in all required fields marked with *</span>';
-          errorMessage.classList.remove('hidden');
-        }
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-        e.preventDefault();
-        return;
-      }
-      
-      // Let the form submit naturally to Netlify
-      // Netlify will redirect to a success page or show success state
-      
-      // Reset button after 3 seconds (in case redirect doesn't happen)
-      setTimeout(() => {
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-      }, 3000);
-    });
-  }
-  
-  // Check URL for success parameter (Netlify adds this after successful submission)
-  const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get('success') === 'true') {
-    if (successMessage) {
-      successMessage.classList.remove('hidden');
-      // Scroll to form
-      successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  }
-  
-  // Real-time validation
-  const inputs = form.querySelectorAll('input, textarea');
-  inputs.forEach(input => {
-    input.addEventListener('input', function() {
-      if (this.hasAttribute('required')) {
-        if (this.value.trim()) {
-          this.classList.remove('border-red-500', 'bg-red-50');
-          this.classList.add('border-green-500', 'bg-green-50');
-        } else {
-          this.classList.remove('border-green-500', 'bg-green-50');
-          this.classList.add('border-gray-300', 'bg-white');
-        }
-      }
-    });
-    
-    input.addEventListener('blur', function() {
-      if (this.hasAttribute('required') && !this.value.trim()) {
-        this.classList.add('border-red-500', 'bg-red-50');
-      }
-    });
-  });
-});
-</script>
+        <div class="bg-white p-8 rounded-xl shadow-2xl">
+          <h3 class="text-2xl font-semibold text-gray-800 mb-6">Send Message</h3>
+          
+          <form name="contact" method="POST" netlify class="space-y-6">
+            <input type="hidden" name="form-name" value="contact" />
+            
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label for="name" class="block text-gray-700 font-medium mb-2">Name *</label>
+                <input 
+                  type="text" 
+                  id="name"
+                  name="name" 
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 focus:outline-none transition-all" 
+                  required
+                  placeholder="Your full name"
+                >
+              </div>
+              <div>
+                <label for="email" class="block text-gray-700 font-medium mb-2">Email *</label>
+                <input 
+                  type="email" 
+                  id="email"
+                  name="email" 
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 focus:outline-none transition-all" 
+                  required
+                  placeholder="your.email@example.com"
+                >
+              </div>
+            </div>
+            
+            <div>
+              <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+              <input 
+                type="text" 
+                id="subject"
+                name="subject" 
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 focus:outline-none transition-all"
+                placeholder="Project inquiry or collaboration"
+              >
+            </div>
+            
+            <div>
+              <label for="message" class="block text-gray-700 font-medium mb-2">Message *</label>
+              <textarea 
+                id="message"
+                name="message" 
+                rows="4" 
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 focus:outline-none resize-none transition-all" 
+                required
+                placeholder="Tell me about your project or how we can work together..."
+              ></textarea>
+            </div>
+            
+            <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition duration-300 flex items-center justify-center">
+              <i class="fas fa-paper-plane mr-2"></i>Send Message
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -1180,20 +1241,19 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script>
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
-        // Only intercept if the target exists on page
-        const target = document.querySelector(this.getAttribute('href'));
-        if (!target) return;
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
-        // Close mobile menu on click
-        const mobileMenu = document.querySelector('.mobile-menu');
-        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-          mobileMenu.classList.add('hidden');
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          // Close mobile menu on click
+          const mobileMenu = document.querySelector('.mobile-menu');
+          if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+          }
         }
       });
     });
@@ -1220,8 +1280,46 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }, { threshold: 0.35 });
 
-    document.querySelectorAll('#skills .soft-card').forEach(card => {
+    document.querySelectorAll('#skills .bg-white').forEach(card => {
       skillObserver.observe(card);
+    });
+
+    // Project filtering
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterBtns.forEach(b => b.classList.remove('active'));
+        // Add active class to clicked button
+        btn.classList.add('active');
+        
+        const filter = btn.getAttribute('data-filter');
+        
+        projectCards.forEach(card => {
+          if (filter === 'all' || card.classList.contains(filter)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+    
+    // Back to top button
+    const backToTopBtn = document.querySelector('.back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.style.display = 'flex';
+      } else {
+        backToTopBtn.style.display = 'none';
+      }
+    });
+    
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   </script>
 </body>
